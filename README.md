@@ -1,2 +1,2 @@
-# Executive
-Executive is an open-source utility library.
+# OpenIC
+OpenIC is an open-source input library used for multiple-purposes.
