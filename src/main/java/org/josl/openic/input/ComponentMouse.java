@@ -30,6 +30,10 @@ public final class ComponentMouse extends AbstractMouseButtonDetector
         this.listener = listener;
     }
 
+    public MouseListener getListener() {
+        return listener;
+    }
+
     public void removeListener() {
         this.appendListener(null);
     }
