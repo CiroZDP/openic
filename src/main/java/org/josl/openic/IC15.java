@@ -1,6 +1,5 @@
 package org.josl.openic;
 
-import net.java.games.input.Controller;
 import org.josl.openic.input.Device;
 
 public class IC15 {
@@ -11,7 +10,7 @@ public class IC15 {
         return IC.genDeviceId();
     }
 
-    public static long icBindDevice(Controller.Type type, Device device, int _default, long id) {
+    public static long icBindDevice(Device.Type type, Device device, int _default, long id) {
         return IC.bindDevice(type, device, _default, id);
     }
 

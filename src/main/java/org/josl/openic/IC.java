@@ -1,6 +1,5 @@
 package org.josl.openic;
 
-import net.java.games.input.Controller;
 import org.josl.openic.input.Device;
 import org.josl.openic.input.Keyboard;
 import org.josl.openic.input.Mouse;
@@ -16,7 +15,7 @@ public class IC {
 	private static Robot bot;
 	private static long idIndex = 0;
 	private static final List<Device> devices = new ArrayList<>();
-	private static final Map<Controller.Type, Long> defaultDevices = new HashMap<>();
+	private static final Map<Device.Type, Long> defaultDevices = new HashMap<>();
 
 	static {
 		Robot bot = null;
@@ -39,7 +38,7 @@ public class IC {
 		return true;
 	}
 
-	public static long bindDevice(Controller.Type type, Device device, int _default, long id) {
+	public static long bindDevice(Device.Type type, Device device, int _default, long id) {
 		devices.add((int) id, device);
 		if (_default == IC_TRUE)
 			defaultDevices.put(type, id);
@@ -115,12 +114,12 @@ public class IC {
 
 	public static Keyboard getDefaultKeyboard() {
 		return (Keyboard) devices.get(
-				(int) (long) defaultDevices.get(Controller.Type.KEYBOARD));
+				(int) (long) defaultDevices.get(Device.Type.KEYBOARD));
 	}
 
 	public static Mouse getDefaultMouse() {
         return (Mouse) devices.get(
-				(int) (long) defaultDevices.get(Controller.Type.MOUSE));
+				(int) (long) defaultDevices.get(Device.Type.MOUSE));
 	}
 
 	public static boolean isBotWorking() {
