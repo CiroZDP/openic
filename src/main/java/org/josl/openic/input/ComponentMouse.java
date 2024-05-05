@@ -4,10 +4,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 public final class ComponentMouse extends AbstractMouseButtonDetector
-        implements MouseListener, MouseButtonDetector
+        implements MouseListener
 {
 
     private Component parent;
+    private MouseListener listener = null;
 
     private final boolean[] buttons = new boolean[Mouse.GetNumberOfButtons()];
 
@@ -23,6 +24,14 @@ public final class ComponentMouse extends AbstractMouseButtonDetector
 
     private void setButton(int button, boolean state) {
         buttons[button] = state;
+    }
+
+    public void appendListener(MouseListener listener) {
+        this.listener = listener;
+    }
+
+    public void removeListener() {
+        this.appendListener(null);
     }
 
     @Override
@@ -55,24 +64,36 @@ public final class ComponentMouse extends AbstractMouseButtonDetector
 
     @Override
     public void mousePressed(MouseEvent mouse) {
+        if (listener != null)
+            listener.mousePressed(mouse);
+
         setButton(mouse.getButton(), true);
     }
 
     @Override
     public void mouseReleased(MouseEvent mouse) {
+        if (listener != null)
+            listener.mouseReleased(mouse);
+
         setButton(mouse.getButton(), false);
     }
 
     @Override
     public void mouseClicked(MouseEvent mouse) {
+        if (listener != null)
+            listener.mouseClicked(mouse);
     }
 
     @Override
     public void mouseEntered(MouseEvent mouse) {
+        if (listener != null)
+            listener.mouseEntered(mouse);
     }
 
     @Override
     public void mouseExited(MouseEvent mouse) {
+        if (listener != null)
+            listener.mouseExited(mouse);
     }
 
 }
