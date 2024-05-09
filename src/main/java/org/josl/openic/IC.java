@@ -52,29 +52,16 @@ public class IC {
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
 
 		float x = 0;
-		float y = switch (relpos) {
-            case IC_LEFT, IC_LEFT_TOP, IC_TOP -> {
-                x = 0;
-                yield 0;
-            }
-            case IC_LEFT_BOTTOM, IC_BOTTOM -> {
-                x = 0;
-                yield h;
-            }
-            case IC_CENTER -> {
-                x = (float) w / 2;
-                yield (float) h / 2;
-            }
-            case IC_RIGHT_TOP, IC_RIGHT -> {
-                x = w;
-                yield 0;
-            }
-            case IC_RIGHT_BOTTOM -> {
-                x = w;
-                yield h;
-            }
-            default -> 0;
-        };
+		float y = 0;
+
+		if (relpos == IC_BOTTOM) {
+			y = h;
+		} else if (relpos == IC_CENTER) {
+			x = (float) w / 2;
+			y = (float) h / 2;
+		} else if (relpos == IC_RIGHT) {
+			x = w;
+		}
 
         setMousePos(x, y);
 
